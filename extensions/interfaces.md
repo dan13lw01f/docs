@@ -89,6 +89,36 @@ Every interface should support a `readonly` and a `disabled` state.
 
 We've prepared a [mixin](https://github.com/directus/extensions/blob/master/mixins/interface.js) that adds all the props to the component that the application passes to the interface. These include value, collection, relationship, and a bunch of others. A minimal interface mostly uses `value` and `options`.
 
+## Development & Build
+
+The custom Interfaces are provided by Directus API.
+To develop and build your own Interface you have to do a few small steps.
+First at all you have to install the Directus extension-toolkit (https://github.com/directus/extension-toolkit) with
+```
+npm install -g @directus/extension-toolkit
+```
+
+### Develop:
+Step 1: go in the Directus API to `public/extensions/custom/interfaces`
+Step 2: run `directus-extensions create interface my-first-interface`
+Step 3: go to `my-first-interface/`
+Step 4: open the package.json and change the the follow scripts
+```
+"build": "directus-extensions build",
+"dev": "directus-extensions watch"
+```
+to
+```
+"build": "directus-extensions build ./src ./",
+"dev": "directus-extensions watch ./src ./"
+```
+
+Step 5: run `npm run dev`
+
+### Build
+run `npm run build`
+
+
 ## Testing
 
 There is an interface debugger under Directus App Settings which you can use to test all the different properties and options of any interface available within the connected API.
